@@ -1,5 +1,24 @@
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Common files
 *.class
 *.log
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# IDEA files
+/.bsp/
+/.idea/
+/out/
+
+# Eclipse files
+.project
+.classpath
+.metadata
+.cache
+bin/
+
+# Compiled outputs
+/target/
+/project/target/
+/project/build.properties
+/project/project/
