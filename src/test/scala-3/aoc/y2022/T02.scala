@@ -1,5 +1,7 @@
 package aoc.y2022
 
+import aoc.TestingUtil
+
 class T02 extends TestingUtil(D02):
   override def answer1: String = "15"
   override def input1: String =

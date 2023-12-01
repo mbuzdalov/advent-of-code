@@ -1,4 +1,4 @@
-package aoc.y2022
+package aoc
 
 import java.util.StringTokenizer
 
