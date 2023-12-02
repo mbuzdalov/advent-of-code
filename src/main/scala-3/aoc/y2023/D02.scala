@@ -14,7 +14,7 @@ object D02 extends Runner:
   case class Game(id: Int, samples: Seq[Sample])
 
   private def parseSample(text: String): Sample =
-    val tok = new StringTokenizer(text, " ,")
+    val tok = StringTokenizer(text, " ,")
     var red, green, blue = 0
     while tok.hasMoreTokens do
       val num = tok.nextToken().toInt
@@ -25,8 +25,8 @@ object D02 extends Runner:
     Sample(red, green, blue)
 
   private def parse(line: String): Game =
-    val tok1 = new StringTokenizer(line, ":;")
-    val header = new StringTokenizer(tok1.nextToken(), " ")
+    val tok1 = StringTokenizer(line, ":;")
+    val header = StringTokenizer(tok1.nextToken(), " ")
     header.nextToken()
     val id = header.nextToken().toInt
     val samples = IndexedSeq.fill(tok1.countTokens())(parseSample(tok1.nextToken()))
