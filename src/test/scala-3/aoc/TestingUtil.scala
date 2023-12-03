@@ -1,8 +1,5 @@
 package aoc
 
-import java.util.StringTokenizer
-
-import aoc.Runner
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -19,5 +16,5 @@ trait TestingUtil(runner: Runner) extends AnyFlatSpec with Matchers:
 
   "Part 2 sample" should "be computed correctly" in:
     runner.part2(input2.toLines) shouldEqual answer2
-  
+
 end TestingUtil
