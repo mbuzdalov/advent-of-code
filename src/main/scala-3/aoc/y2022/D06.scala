@@ -1,4 +1,3 @@
-
 package aoc.y2022
 
 import aoc.Runner
