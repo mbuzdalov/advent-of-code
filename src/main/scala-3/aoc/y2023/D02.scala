@@ -5,13 +5,13 @@ import java.util.StringTokenizer
 import aoc.Runner
 
 object D02 extends Runner:
+  case class Game(id: Int, samples: Seq[Sample])
   case class Sample(red: Int, green: Int, blue: Int):
     def dominated(other: Sample): Boolean =
       red <= other.red && green <= other.green && blue <= other.blue
     def max(other: Sample): Sample =
       Sample(math.max(red, other.red), math.max(green, other.green), math.max(blue, other.blue))
     def power: Int = red * green * blue
-  case class Game(id: Int, samples: Seq[Sample])
 
   private def parseSample(text: String): Sample =
     val tok = StringTokenizer(text, " ,")
@@ -24,7 +24,7 @@ object D02 extends Runner:
         case "green" => green += num
     Sample(red, green, blue)
 
-  private def parse(line: String): Game =
+  private def parseGame(line: String): Game =
     val tok1 = StringTokenizer(line, ":;")
     val header = StringTokenizer(tok1.nextToken(), " ")
     header.nextToken()
@@ -34,8 +34,8 @@ object D02 extends Runner:
 
   override def part1(input: Seq[String]): String =
     val limit = Sample(12, 13, 14)
-    input.map(parse).filter(_.samples.forall(_.dominated(limit))).map(_.id).sum.toString
+    input.map(parseGame).filter(_.samples.forall(_.dominated(limit))).map(_.id).sum.toString
 
   override def part2(input: Seq[String]): String =
-    input.map(parse).map(_.samples.reduce(_ max _).power).sum.toString
+    input.map(parseGame).map(_.samples.reduce(_ max _).power).sum.toString
 end D02

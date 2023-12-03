@@ -14,5 +14,4 @@ class T02 extends TestingUtil(D02):
 
   override def answer2: String = "2286"
   override def input2: String = input1
-
 end T02
