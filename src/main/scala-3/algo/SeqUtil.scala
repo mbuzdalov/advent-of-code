@@ -1,5 +1,7 @@
 package algo
 
+import java.util.StringTokenizer
+
 object SeqUtil:
   /**
    * Splits a sequence using a separator predicate
@@ -21,4 +23,20 @@ object SeqUtil:
     if last.nonEmpty then builder += last
     builder.result()
 
+  /**
+   * Splits the given string `str` into tokens using separator chars given as `sep`,
+   * then applies a conversion `map` to each of them and returns the result in a sequence.
+   * 
+   * Internally this uses `StringTokenizer` to tokenize the string, with its usual conventions applied. 
+   * 
+   * @param str the string to tokenize.
+   * @param sep the separator chars.
+   * @param map the mapping function,
+   * @tparam T the type of the mapping function result.
+   * @return the sequence of mapped tokens.
+   */
+  def tokenMap[T](str: String, sep: String, map: String => T): Seq[T] =
+    val tokenizer = StringTokenizer(str, sep)
+    IndexedSeq.fill(tokenizer.countTokens())(map(tokenizer.nextToken()))
+  
 end SeqUtil
