@@ -1,7 +1,5 @@
 package aoc.y2023
 
-import java.util.StringTokenizer
-
 import algo.SeqUtil
 import aoc.Runner
 
