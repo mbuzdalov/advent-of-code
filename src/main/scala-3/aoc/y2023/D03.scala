@@ -51,6 +51,6 @@ object D03 extends Runner:
           number = 0
     (result, acceptor.result)
 
-  override def part1(input: Seq[String]): String = solve(input)._1.toString
-  override def part2(input: Seq[String]): String = solve(input)._2.toString
+  override def part1(input: IndexedSeq[String]): String = solve(input)._1.toString
+  override def part2(input: IndexedSeq[String]): String = solve(input)._2.toString
 end D03

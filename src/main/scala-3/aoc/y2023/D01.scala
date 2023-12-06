@@ -11,6 +11,6 @@ object D01 extends Runner:
     val last = digits.map(d => (d._2, s.lastIndexOf(d._1))).maxBy(_._2)._1
     first * 10 + last
 
-  override def part1(input: Seq[String]): String = input.map(decode(digits)).sum.toString
-  override def part2(input: Seq[String]): String = input.map(decode(digits ++ words)).sum.toString
+  override def part1(input: IndexedSeq[String]): String = input.map(decode(digits)).sum.toString
+  override def part2(input: IndexedSeq[String]): String = input.map(decode(digits ++ words)).sum.toString
 end D01

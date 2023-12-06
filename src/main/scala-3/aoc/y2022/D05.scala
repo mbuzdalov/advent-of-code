@@ -36,6 +36,6 @@ object D05 extends Runner:
     val lastState = moves.foldLeft(state)(applyMove(atOnce))
     lastState.map(_.last).mkString("")
 
-  override def part1(input: Seq[String]): String = solve(input, atOnce = false)
-  override def part2(input: Seq[String]): String = solve(input, atOnce = true)
+  override def part1(input: IndexedSeq[String]): String = solve(input, atOnce = false)
+  override def part2(input: IndexedSeq[String]): String = solve(input, atOnce = true)
 end D05

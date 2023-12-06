@@ -4,7 +4,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 trait TestingUtil(runner: Runner) extends AnyFlatSpec with Matchers:
-  extension (input: String) def toLines: Seq[String] = input.split('\n').toIndexedSeq
+  extension (input: String) def toLines: IndexedSeq[String] = input.split('\n').toIndexedSeq
 
   def input1: String
   def answer1: String

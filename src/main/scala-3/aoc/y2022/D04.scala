@@ -9,6 +9,6 @@ object D04 extends Runner:
   private def overlap1(r1: Range, r2: Range): Boolean = r1.intersect(r2).size == math.min(r1.size, r2.size)
   private def overlap2(r1: Range, r2: Range): Boolean = r1.intersect(r2).nonEmpty
 
-  override def part1(input: Seq[String]): String = input.count(line => decide(line, overlap1)).toString
-  override def part2(input: Seq[String]): String = input.count(line => decide(line, overlap2)).toString
+  override def part1(input: IndexedSeq[String]): String = input.count(line => decide(line, overlap1)).toString
+  override def part2(input: IndexedSeq[String]): String = input.count(line => decide(line, overlap2)).toString
 end D04

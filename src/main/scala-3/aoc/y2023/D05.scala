@@ -60,12 +60,12 @@ object D05 extends Runner:
     val maps = paragraphs.tail.map(parseMap)
     (seeds, maps)
 
-  override def part1(input: Seq[String]): String =
+  override def part1(input: IndexedSeq[String]): String =
     val (seeds, maps) = parseInput(input)
     val mapped = seeds.map(applyChain1(maps))
     mapped.min.toString
 
-  override def part2(input: Seq[String]): String =
+  override def part2(input: IndexedSeq[String]): String =
     val (seeds, maps) = parseInput(input)
     val ranges = seeds.grouped(2).map(g => g.head until (g.head + g.last)).toIndexedSeq
     val resultRanges = ranges.flatMap(applyChain2(maps))

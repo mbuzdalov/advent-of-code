@@ -31,14 +31,14 @@ object D07 extends Runner:
       case s"$size $child" => curr.addFileSize(size.toLong)
     root
 
-  override def part1(input: Seq[String]): String =
+  override def part1(input: IndexedSeq[String]): String =
     val root = construct(input)
     root.computeTotalSize()
     var sumGreater = 0L
     root.traverse(d => if d.totalSize <= 100000 then sumGreater += d.totalSize)
     sumGreater.toString
 
-  override def part2(input: Seq[String]): String =
+  override def part2(input: IndexedSeq[String]): String =
     val root = construct(input)
     val requiredMinimumSize = 30000000 - (70000000 - root.computeTotalSize())
     var answer = Long.MaxValue

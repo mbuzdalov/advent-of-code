@@ -34,6 +34,6 @@ object D02 extends Runner:
     val m1 = (0 to 2).find(v => play(v, m2) == expCost).get
     (m1 + 1) + 3 * play(m1, m2) + 3
 
-  override def part1(input: Seq[String]): String = input.map(cost1).sum.toString
-  override def part2(input: Seq[String]): String = input.map(cost2).sum.toString
+  override def part1(input: IndexedSeq[String]): String = input.map(cost1).sum.toString
+  override def part2(input: IndexedSeq[String]): String = input.map(cost2).sum.toString
 end D02

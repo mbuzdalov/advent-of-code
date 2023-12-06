@@ -9,10 +9,10 @@ object D04 extends Runner:
       val needSet = SeqUtil.tokenMap(need, " ", _.toInt).toSet
       SeqUtil.tokenMap(have, " ", _.toInt).count(needSet.contains)
 
-  override def part1(input: Seq[String]): String =
+  override def part1(input: IndexedSeq[String]): String =
     input.map(l => (1L << evaluateCard1(l)) / 2).sum.toString
 
-  override def part2(input: Seq[String]): String =
+  override def part2(input: IndexedSeq[String]): String =
     val copies = Array.fill(input.size)(1L)
     var result = 0L
     for i <- input.indices do

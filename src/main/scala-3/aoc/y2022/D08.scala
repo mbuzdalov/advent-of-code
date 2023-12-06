@@ -27,6 +27,6 @@ object D08 extends Runner:
     yield extract(dirs.indices.map(d => scan(input, r, c, d)).reduce(_ aggregate _))
     cells.reduce(compose)
 
-  override def part1(input: Seq[String]): String = solve(input, _.out, _ + _).toString
-  override def part2(input: Seq[String]): String = solve(input, _.len, _ max _).toString
+  override def part1(input: IndexedSeq[String]): String = solve(input, _.out, _ + _).toString
+  override def part2(input: IndexedSeq[String]): String = solve(input, _.len, _ max _).toString
 end D08

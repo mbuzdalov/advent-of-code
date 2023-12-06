@@ -11,6 +11,6 @@ object D03 extends Runner:
 
   private def priority2(elves: Seq[String]): Int = priority(elves.reduce(_ intersect _).charAt(0))
 
-  override def part1(input: Seq[String]): String = input.map(priority1).sum.toString
-  override def part2(input: Seq[String]): String = input.grouped(3).map(priority2).sum.toString
+  override def part1(input: IndexedSeq[String]): String = input.map(priority1).sum.toString
+  override def part2(input: IndexedSeq[String]): String = input.grouped(3).map(priority2).sum.toString
 end D03

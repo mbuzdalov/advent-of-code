@@ -7,8 +7,8 @@ import scala.annotation.tailrec
 import scala.util.Using
 
 abstract class Runner:
-  def part1(input: Seq[String]): String = throw UnsupportedOperationException("Solution not yet implemented")
-  def part2(input: Seq[String]): String = throw UnsupportedOperationException("Solution not yet implemented")
+  def part1(input: IndexedSeq[String]): String = throw UnsupportedOperationException("Solution not yet implemented")
+  def part2(input: IndexedSeq[String]): String = throw UnsupportedOperationException("Solution not yet implemented")
 
   @tailrec
   private def readUntilNull(br: BufferedReader, dest: String => Unit): Unit =

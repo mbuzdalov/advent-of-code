@@ -32,10 +32,10 @@ object D02 extends Runner:
     val samples = IndexedSeq.fill(tok1.countTokens())(parseSample(tok1.nextToken()))
     Game(id, samples)
 
-  override def part1(input: Seq[String]): String =
+  override def part1(input: IndexedSeq[String]): String =
     val limit = Sample(12, 13, 14)
     input.map(parseGame).filter(_.samples.forall(_.dominated(limit))).map(_.id).sum.toString
 
-  override def part2(input: Seq[String]): String =
+  override def part2(input: IndexedSeq[String]): String =
     input.map(parseGame).map(_.samples.reduce(_ max _).power).sum.toString
 end D02
