@@ -2,7 +2,6 @@ package aoc.y2023
 
 import scala.annotation.tailrec
 
-import algo.SeqUtil
 import aoc.Runner
 
 object D07 extends Runner:
