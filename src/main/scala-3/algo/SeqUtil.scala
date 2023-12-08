@@ -10,8 +10,8 @@ object SeqUtil:
    * @tparam T the type of all the elements
    * @return the sequence of substrings of the original sequence that do not contain separators
    */
-  def splitBySeparator[T](seq: Seq[T], separator: T => Boolean): Seq[Seq[T]] =
-    val builder = IndexedSeq.newBuilder[Seq[T]]
+  def splitBySeparator[T](seq: Seq[T], separator: T => Boolean): IndexedSeq[IndexedSeq[T]] =
+    val builder = IndexedSeq.newBuilder[IndexedSeq[T]]
     val current = IndexedSeq.newBuilder[T]
     for elem <- seq do
       if separator(elem) then
