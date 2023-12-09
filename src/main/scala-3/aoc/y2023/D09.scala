@@ -6,8 +6,7 @@ import aoc.Runner
 object D09 extends Runner:
   private def predict(seq: IndexedSeq[Int]): Int =
     if seq.count(_ == 0) == seq.size then 0 else
-      val derivative = seq.sliding(2).map(p => p(1) - p(0)).toIndexedSeq
-      seq.last + predict(derivative)
+      seq.last + predict(seq.sliding(2).map(p => p(1) - p(0)).toIndexedSeq)
 
   private def solve(input: IndexedSeq[String], conv: IndexedSeq[Int] => IndexedSeq[Int]): String =
     input.map(line => predict(conv(SeqUtil.tokenMap(line, " ", _.toInt)))).sum.toString
