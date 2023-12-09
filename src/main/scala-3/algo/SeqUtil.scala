@@ -35,7 +35,7 @@ object SeqUtil:
    * @tparam T the type of the mapping function result.
    * @return the sequence of mapped tokens.
    */
-  def tokenMap[T](str: String, sep: String, map: String => T): Seq[T] =
+  def tokenMap[T](str: String, sep: String, map: String => T): IndexedSeq[T] =
     val tokenizer = StringTokenizer(str, sep)
     IndexedSeq.fill(tokenizer.countTokens())(map(tokenizer.nextToken()))
   
