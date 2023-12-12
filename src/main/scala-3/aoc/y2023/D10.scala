@@ -15,7 +15,7 @@ object D10 extends Runner:
     val startRow = input.indexWhere(_.contains('S'))
     val startCol = input(startRow).indexOf('S')
     result.foreach(_(startRow)(startCol) = 0)
-    for dir <- 0 until 3 do
+    for dir <- 0 until 4 do
       var pr = startRow
       var pc = startCol
       var r = pr + dR(dir)
