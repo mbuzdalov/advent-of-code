@@ -31,7 +31,13 @@ class T07 extends TestingUtil:
 
   "The solution" should "be correct for sample 1" in:
     D07.part1(input) shouldEqual "95437"
-    
+
   it should "be correct for sample 2" in:
     D07.part2(input) shouldEqual "24933642"
+
+  it should "solve part 1" in:
+    D07.part1(mainInput) shouldEqual "1490523"
+  
+  it should "solve part 2" in:
+    D07.part2(mainInput) shouldEqual "12390492"
 end T07

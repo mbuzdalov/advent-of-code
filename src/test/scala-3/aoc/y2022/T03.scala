@@ -17,4 +17,10 @@ class T03 extends TestingUtil:
 
   it should "be correct for sample 2" in:
     D03.part2(input) shouldEqual "70"
+
+  it should "solve part 1" in:
+    D03.part1(mainInput) shouldEqual "8202"
+  
+  it should "solve part 2" in:
+    D03.part2(mainInput) shouldEqual "2864"
 end T03

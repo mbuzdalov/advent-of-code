@@ -154,14 +154,27 @@ class T10 extends TestingUtil:
 
   "The solution" should "be correct for sample 1" in:
     D10.part1(input) shouldEqual "13140"
-  
+
   it should "be correct for sample 2" in:
-    D10.part2(input) shouldEqual 
+    D10.part2(input) shouldEqual
     """##..##..##..##..##..##..##..##..##..##..
       |###...###...###...###...###...###...###.
       |####....####....####....####....####....
       |#####.....#####.....#####.....#####.....
       |######......######......######......####
       |#######.......#######.......#######.....
+      |""".stripMargin
+
+  it should "solve part 1" in:
+    D10.part1(mainInput) shouldEqual "14860"
+
+  it should "solve part 2" in:
+    D10.part2(mainInput) shouldEqual
+    """###...##..####.####.#..#.#..#.###..#..#.
+      |#..#.#..#....#.#....#..#.#..#.#..#.#.#..
+      |#..#.#......#..###..####.#..#.#..#.##...
+      |###..#.##..#...#....#..#.#..#.###..#.#..
+      |#.#..#..#.#....#....#..#.#..#.#.#..#.#..
+      |#..#..###.####.####.#..#..##..#..#.#..#.
       |""".stripMargin
 end T10

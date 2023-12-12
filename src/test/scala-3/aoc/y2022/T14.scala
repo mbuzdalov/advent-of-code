@@ -13,4 +13,10 @@ class T14 extends TestingUtil:
 
   it should "be correct for sample 2" in:
     D14.part2(input) shouldEqual "93"
+
+  it should "solve part 1" in:
+    D14.part1(mainInput) shouldEqual "578"
+  
+  it should "solve part 2" in:
+    D14.part2(mainInput) shouldEqual "24377"
 end T14

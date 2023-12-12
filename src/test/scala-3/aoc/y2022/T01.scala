@@ -22,7 +22,13 @@ class T01 extends TestingUtil:
 
   "The solution" should "be correct for sample 1" in:
     D01.part1(input) shouldEqual "24000"
-  
+
   it should "be correct for sample 2" in:
     D01.part2(input) shouldEqual "45000"
+
+  it should "solve part 1" in:
+    D01.part1(mainInput) shouldEqual "65912"
+
+  it should "solve part 2" in:
+    D01.part2(mainInput) shouldEqual "195625"
 end T01

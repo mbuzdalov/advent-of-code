@@ -14,7 +14,13 @@ class T04 extends TestingUtil:
 
   "The solution" should "be correct for sample 1" in:
     D04.part1(input) shouldEqual "2"
-  
+
   it should "be correct for sample 2" in:
     D04.part2(input) shouldEqual "4"
+
+  it should "solve part 1" in:
+    D04.part1(mainInput) shouldEqual "584"
+    
+  it should "solve part 2" in:
+    D04.part2(mainInput) shouldEqual "933"
 end T04

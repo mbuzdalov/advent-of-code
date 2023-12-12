@@ -16,4 +16,10 @@ class T08 extends TestingUtil:
 
   it should "be correct for sample 2" in:
     D08.part2(input) shouldEqual "8"
+
+  it should "solve part 1" in:
+    D08.part1(mainInput) shouldEqual "1827"
+  
+  it should "solve part 2" in:
+    D08.part2(mainInput) shouldEqual "335580"
 end T08

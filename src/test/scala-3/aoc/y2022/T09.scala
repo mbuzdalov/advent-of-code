@@ -24,10 +24,16 @@ class T09 extends TestingUtil:
       |L 25
       |U 20
       |""".toLines
-    
+
   "The solution" should "be correct for sample 1" in:
     D09.part1(input1) shouldEqual "13"
-    
+
   it should "be correct for sample 2" in:
-    D09.part2(input2) shouldEqual "36"  
+    D09.part2(input2) shouldEqual "36"
+
+  it should "solve part 1" in:
+    D09.part1(mainInput) shouldEqual "6190"
+    
+  it should "solve part 2" in:
+    D09.part2(mainInput) shouldEqual "2516"
 end T09

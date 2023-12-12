@@ -31,7 +31,13 @@ class T13 extends TestingUtil:
 
   "The solution" should "be correct for sample 1" in:
     D13.part1(input) shouldEqual "13"
-  
+
   it should "be correct for sample 2" in:
     D13.part2(input) shouldEqual "140"
+
+  it should "solve part 1" in:
+    D13.part1(mainInput) shouldEqual "5720"
+  
+  it should "solve part 2" in:
+    D13.part2(mainInput) shouldEqual "23504"
 end T13

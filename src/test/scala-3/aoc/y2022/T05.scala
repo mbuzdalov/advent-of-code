@@ -17,7 +17,13 @@ class T05 extends TestingUtil:
 
   "The solution" should "be correct for sample 1" in:
     D05.part1(input) shouldEqual "CMZ"
-    
+
   it should "be correct for sample 2" in:
-    D05.part2(input) shouldEqual "MCD"  
+    D05.part2(input) shouldEqual "MCD"
+
+  it should "solve part 1" in:
+    D05.part1(mainInput) shouldEqual "QGTHFZBHV"
+    
+  it should "solve part 2" in:
+    D05.part2(mainInput) shouldEqual "MGDMPSZTM"
 end T05

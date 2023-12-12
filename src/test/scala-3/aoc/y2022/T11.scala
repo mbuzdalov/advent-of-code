@@ -35,7 +35,13 @@ class T11 extends TestingUtil:
 
   "The solution" should "be correct for sample 1" in:
     D11.part1(input) shouldEqual "10605"
-    
+
   it should "be correct for sample 2" in:
     D11.part2(input) shouldEqual "2713310158"
+
+  it should "solve part 1" in:
+    D11.part1(mainInput) shouldEqual "113220"
+    
+  it should "solve part 2" in:
+    D11.part2(mainInput) shouldEqual "30599555965"
 end T11
