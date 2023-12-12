@@ -2,9 +2,8 @@ package aoc.y2022
 
 import aoc.TestingUtil
 
-class T11 extends TestingUtil(D11):
-  override def answer1: String = "10605"
-  override def input1: String =
+class T11 extends TestingUtil:
+  private val input =
     """Monkey 0:
       |  Starting items: 79, 98
       |  Operation: new = old * 19
@@ -32,8 +31,11 @@ class T11 extends TestingUtil(D11):
       |  Test: divisible by 17
       |    If true: throw to monkey 0
       |    If false: throw to monkey 1
-      |""".stripMargin
+      |""".toLines
 
-  override def answer2: String = "2713310158"
-  override def input2: String = input1
+  "The solution" should "be correct for sample 1" in:
+    D11.part1(input) shouldEqual "10605"
+    
+  it should "be correct for sample 2" in:
+    D11.part2(input) shouldEqual "2713310158"
 end T11

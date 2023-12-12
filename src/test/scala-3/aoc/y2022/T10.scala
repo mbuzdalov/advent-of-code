@@ -2,9 +2,8 @@ package aoc.y2022
 
 import aoc.TestingUtil
 
-class T10 extends TestingUtil(D10):
-  override def answer1: String = "13140"
-  override def input1: String =
+class T10 extends TestingUtil:
+  private val input =
     """addx 15
       |addx -11
       |addx 6
@@ -151,9 +150,13 @@ class T10 extends TestingUtil(D10):
       |noop
       |noop
       |noop
-      |""".stripMargin
+      |""".toLines
 
-  override def answer2: String =
+  "The solution" should "be correct for sample 1" in:
+    D10.part1(input) shouldEqual "13140"
+  
+  it should "be correct for sample 2" in:
+    D10.part2(input) shouldEqual 
     """##..##..##..##..##..##..##..##..##..##..
       |###...###...###...###...###...###...###.
       |####....####....####....####....####....
@@ -161,5 +164,4 @@ class T10 extends TestingUtil(D10):
       |######......######......######......####
       |#######.......#######.......#######.....
       |""".stripMargin
-  override def input2: String = input1
 end T10

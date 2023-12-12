@@ -2,9 +2,8 @@ package aoc.y2022
 
 import aoc.TestingUtil
 
-class T07 extends TestingUtil(D07):
-  override def answer1: String = "95437"
-  override def input1: String =
+class T07 extends TestingUtil:
+  private val input =
     """$ cd /
       |$ ls
       |dir a
@@ -28,8 +27,11 @@ class T07 extends TestingUtil(D07):
       |8033020 d.log
       |5626152 d.ext
       |7214296 k
-      |""".stripMargin
+      |""".toLines
 
-  override def answer2: String = "24933642"
-  override def input2: String = input1
+  "The solution" should "be correct for sample 1" in:
+    D07.part1(input) shouldEqual "95437"
+    
+  it should "be correct for sample 2" in:
+    D07.part2(input) shouldEqual "24933642"
 end T07

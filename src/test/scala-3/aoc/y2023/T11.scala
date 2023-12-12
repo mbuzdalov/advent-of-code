@@ -1,10 +1,9 @@
 package aoc.y2023
 
-import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
+import aoc.TestingUtil
 
-class T11 extends AnyFlatSpec with Matchers:
-  private val input: IndexedSeq[String] =
+class T11 extends TestingUtil:
+  private val input =
     """...#......
       |.......#..
       |#.........
@@ -15,7 +14,7 @@ class T11 extends AnyFlatSpec with Matchers:
       |..........
       |.......#..
       |#...#.....
-      |""".stripMargin.split('\n').toIndexedSeq
+      |""".toLines
 
   "The solution" should "work with expansion rate 2" in:
     D11.solve(input, 2) shouldEqual "374"

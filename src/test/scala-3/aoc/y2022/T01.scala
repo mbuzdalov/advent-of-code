@@ -2,9 +2,8 @@ package aoc.y2022
 
 import aoc.TestingUtil
 
-class T01 extends TestingUtil(D01):
-  override def answer1: String = "24000"
-  override def input1: String =
+class T01 extends TestingUtil:
+  private val input =
     """1000
       |2000
       |3000
@@ -19,8 +18,11 @@ class T01 extends TestingUtil(D01):
       |9000
       |
       |10000
-      |""".stripMargin
+      |""".toLines
 
-  override def answer2: String = "45000"
-  override def input2: String = input1
+  "The solution" should "be correct for sample 1" in:
+    D01.part1(input) shouldEqual "24000"
+  
+  it should "be correct for sample 2" in:
+    D01.part2(input) shouldEqual "45000"
 end T01

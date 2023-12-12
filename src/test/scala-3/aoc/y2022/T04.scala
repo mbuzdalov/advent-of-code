@@ -2,17 +2,19 @@ package aoc.y2022
 
 import aoc.TestingUtil
 
-class T04 extends TestingUtil(D04):
-  override def answer1: String = "2"
-  override def input1: String =
+class T04 extends TestingUtil:
+  private val input =
     """2-4,6-8
       |2-3,4-5
       |5-7,7-9
       |2-8,3-7
       |6-6,4-6
       |2-6,4-8
-      |""".stripMargin
+      |""".toLines
 
-  override def answer2: String = "4"
-  override def input2: String = input1
+  "The solution" should "be correct for sample 1" in:
+    D04.part1(input) shouldEqual "2"
+  
+  it should "be correct for sample 2" in:
+    D04.part2(input) shouldEqual "4"
 end T04

@@ -2,9 +2,8 @@ package aoc.y2023
 
 import aoc.TestingUtil
 
-class T05 extends TestingUtil(D05):
-  override def answer1: String = "35"
-  override def input1: String =
+class T05 extends TestingUtil:
+  private val input =
     """seeds: 79 14 55 13
       |
       |seed-to-soil map:
@@ -38,8 +37,11 @@ class T05 extends TestingUtil(D05):
       |humidity-to-location map:
       |60 56 37
       |56 93 4
-      |""".stripMargin
+      |""".toLines
 
-  override def answer2: String = "46"
-  override def input2: String = input1
+  "The solution" should "be correct for sample 1" in:
+    D05.part1(input) shouldEqual "35"
+
+  it should "be correct for sample 2" in:
+    D05.part2(input) shouldEqual "46"
 end T05
