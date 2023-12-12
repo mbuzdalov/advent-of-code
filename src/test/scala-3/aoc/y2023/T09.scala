@@ -14,4 +14,10 @@ class T09 extends TestingUtil:
 
   it should "be correct for sample 2" in:
     D09.part2(input) shouldEqual "2"
+
+  it should "solve part 1" in:
+    D09.part1(mainInput) shouldEqual "1789635132"
+
+  it should "solve part 2" in:
+    D09.part2(mainInput) shouldEqual "913"
 end T09

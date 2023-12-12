@@ -71,4 +71,10 @@ class T10 extends TestingUtil:
 
   it should "be correct for sample 2/3" in:
     D10.part2(input5) shouldEqual "10"
+
+  it should "solve part 1" in:
+    D10.part1(mainInput) shouldEqual "7102"
+
+  it should "solve part 2" in:
+    D10.part2(mainInput) shouldEqual "363"
 end T10

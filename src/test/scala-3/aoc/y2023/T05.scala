@@ -44,4 +44,10 @@ class T05 extends TestingUtil:
 
   it should "be correct for sample 2" in:
     D05.part2(input) shouldEqual "46"
+
+  it should "solve part 1" in:
+    D05.part1(mainInput) shouldEqual "486613012"
+
+  it should "solve part 2" in:
+    D05.part2(mainInput) shouldEqual "56931769"
 end T05

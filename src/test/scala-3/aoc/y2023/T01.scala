@@ -8,7 +8,7 @@ class T01 extends TestingUtil:
       |pqr3stu8vwx
       |a1b2c3d4e5f
       |treb7uchet
-      |""".toLines 
+      |""".toLines
 
   private val input2 =
     """two1nine
@@ -22,7 +22,13 @@ class T01 extends TestingUtil:
 
   "The solution" should "be correct for sample 1" in:
     D01.part1(input1) shouldEqual "142"
-  
+
   it should "be correct for sample 2" in:
     D01.part2(input2) shouldEqual "281"
+
+  it should "solve part 1" in:
+    D01.part1(mainInput) shouldEqual "56397"
+
+  it should "solve part 2" in:
+    D01.part2(mainInput) shouldEqual "55701"
 end T01
