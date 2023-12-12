@@ -24,7 +24,7 @@ object TestReader:
     assert(tokens.nextToken() == "aoc")
     val year, day = tokens.nextToken()
     assert(year(0) == 'y')
-    val file = File(s"inputs/${year.substring(1)}/$day.in")
+    val file = File(s"inputs/${year.substring(1)}/$day.in".replace('T', 'D'))
     if file.exists() then
       Using.resource(BufferedReader(FileReader(file)))(readFromFile)
     else
