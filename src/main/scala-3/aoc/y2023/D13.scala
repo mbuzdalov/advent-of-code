@@ -4,33 +4,21 @@ import algo.SeqUtil
 import aoc.Runner
 
 object D13 extends Runner:
-  private def isMirrored[T](left: Seq[T], right: Seq[T]): Boolean =
-    val length = math.min(left.size, right.size)
-    left.takeRight(length) == right.take(length).reverse
+  private def vMismatches(input: IndexedSeq[String], axis: Int): Int =
+    val range = math.max(0, 2 * axis - input(0).length) until axis
+    input.map(line => range count (c => line(c) != line(2 * axis - 1 - c))).sum
 
-  private def mirroring(input: IndexedSeq[String]): (Set[Int], Set[Int]) =
-    val horizontal = (1 until input.size).filter(i => isMirrored(input.take(i), input.drop(i)))
-    val vertical = (1 until input(0).length).filter(i => input.forall(line => isMirrored(line.take(i), line.drop(i))))
-    (vertical.toSet, horizontal.toSet)
+  private def hMismatches(input: IndexedSeq[String], axis: Int): Int =
+    val range = math.max(0, 2 * axis - input.size) until axis
+    range.map(r => input(r).indices.count(c => input(r)(c) != input(2 * axis - 1 - r)(c))).sum
 
-  private def alternativeMirroring(input: IndexedSeq[String]): (Set[Int], Set[Int]) =
-    val old = mirroring(input)
-    val smudges = for
-      r <- input.indices
-      c <- input(0).indices
-      i0 = input.updated(r, input(r).updated(c, if input(r)(c) == '#' then '.' else '#'))
-      m = mirroring(i0)
-      m2 = (m._1.removedAll(old._1), m._2.removedAll(old._2))
-      if m2._1.nonEmpty || m2._2.nonEmpty
-    yield m2
-    smudges.head
-
-  private def solve(mirroring: IndexedSeq[String] => (Set[Int], Set[Int]))(input: IndexedSeq[String]): Int =
-    val solution = mirroring(input)
-    if solution._1.nonEmpty then solution._1.head else solution._2.head * 100
+  private def solve(mismatches: Int)(input: IndexedSeq[String]): Int =
+    val horizontal = (1 until input.size).filter(i => hMismatches(input, i) == mismatches) :+ 0
+    val vertical = (1 until input(0).length).filter(i => vMismatches(input, i) == mismatches) :+ 0
+    vertical(0) + 100 * horizontal(0)
 
   override def part1(input: IndexedSeq[String]): String =
-    SeqUtil.splitBySeparator(input, _.isEmpty).map(solve(mirroring)).sum.toString
+    SeqUtil.splitBySeparator(input, _.isEmpty).map(solve(0)).sum.toString
   override def part2(input: IndexedSeq[String]): String =
-    SeqUtil.splitBySeparator(input, _.isEmpty).map(solve(alternativeMirroring)).sum.toString
+    SeqUtil.splitBySeparator(input, _.isEmpty).map(solve(1)).sum.toString
 end D13
