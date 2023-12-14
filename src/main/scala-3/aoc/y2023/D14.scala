@@ -3,53 +3,35 @@ package aoc.y2023
 import aoc.Runner
 
 object D14 extends Runner:
-  private def rollNorth(field: IndexedSeq[Array[Char]]): Unit =
+  private def rollNS(field: IndexedSeq[Array[Char]], init: Int, delta: Int): Unit =
     for c <- field(0).indices do
-      var r, rMin = 0
-      while r < field.size do
+      var r, rMin = init
+      while r >= 0 && r < field.size do
         if field(r)(c) == '#' then
-          rMin = r + 1
+          rMin = r + delta
         else if field(r)(c) == 'O' then
           field(r)(c) = '.'
           field(rMin)(c) = 'O'
-          rMin += 1
-        r += 1
+          rMin += delta
+        r += delta
 
-  private def rollSouth(field: IndexedSeq[Array[Char]]): Unit =
-    for c <- field(0).indices do
-      var r, rMin = field.size - 1
-      while r >= 0 do
-        if field(r)(c) == '#' then
-          rMin = r - 1
-        else if field(r)(c) == 'O' then
-          field(r)(c) = '.'
-          field(rMin)(c) = 'O'
-          rMin -= 1
-        r -= 1
+  private def rollNorth(field: IndexedSeq[Array[Char]]): Unit = rollNS(field, 0, +1)
+  private def rollSouth(field: IndexedSeq[Array[Char]]): Unit = rollNS(field, field.size - 1, -1)
 
-  private def rollEast(field: IndexedSeq[Array[Char]]): Unit =
+  private def rollEW(field: IndexedSeq[Array[Char]], init: Int, delta: Int): Unit =
     for r <- field.indices do
-      var c, cMin = field(r).length - 1
-      while c >= 0 do
+      var c, cMin = init
+      while c >= 0 && c < field(r).length do
         if field(r)(c) == '#' then
-          cMin = c - 1
+          cMin = c + delta
         else if field(r)(c) == 'O' then
           field(r)(c) = '.'
           field(r)(cMin) = 'O'
-          cMin -= 1
-        c -= 1
+          cMin += delta
+        c += delta
 
-  private def rollWest(field: IndexedSeq[Array[Char]]): Unit =
-    for r <- field.indices do
-      var c, cMin = 0
-      while c < field(r).length do
-        if field(r)(c) == '#' then
-          cMin = c + 1
-        else if field(r)(c) == 'O' then
-          field(r)(c) = '.'
-          field(r)(cMin) = 'O'
-          cMin += 1
-        c += 1
+  private def rollEast(field: IndexedSeq[Array[Char]]): Unit = rollEW(field, field(0).length - 1, -1)
+  private def rollWest(field: IndexedSeq[Array[Char]]): Unit = rollEW(field, 0, +1)
 
   private def rollTurn(field: IndexedSeq[Array[Char]]): Unit =
     rollNorth(field)
@@ -82,5 +64,4 @@ object D14 extends Runner:
         else
           hash += fixed -> iteration
     computeLoad(field)
-
 end D14
