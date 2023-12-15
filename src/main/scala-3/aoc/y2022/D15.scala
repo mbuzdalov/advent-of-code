@@ -18,15 +18,15 @@ object D15 extends Runner:
 
   private def getRanges(records: IndexedSeq[Def], y: Int, minX: Int = Int.MinValue, maxX: Int = Int.MaxValue): IndexedSeq[Range] =
     records.map(_.coveredRange(y, minX, maxX)).filter(_.nonEmpty).sortBy(_.head).foldLeft(IndexedSeq[Range]())(joinRange)
-  
+
   private def parseRecord(line: String): Def = line match
     case s"Sensor at x=$sx, y=$sy: closest beacon is at x=$bx, y=$by" => Def(sx.toInt, sy.toInt, bx.toInt, by.toInt)
-  
+
   def part1(input: IndexedSeq[String], y: Int): Int =
     val records = input.map(parseRecord)
     val covered = getRanges(records, y)
-    val beaconsHere = records.filter(_.by == y).map(_.bx)
-    covered.map(_.toSet).reduce(_ ++ _).removedAll(beaconsHere).size
+    val beaconsHere = records.filter(_.by == y).map(_.bx).distinct
+    covered.map(_.size).sum - beaconsHere.size
 
   def part2(input: IndexedSeq[String], maxXY: Int): Long =
     val records = input.map(parseRecord)
