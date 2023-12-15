@@ -39,4 +39,7 @@ object SeqUtil:
     val tokenizer = StringTokenizer(str, sep)
     IndexedSeq.fill(tokenizer.countTokens())(map(tokenizer.nextToken()))
   
+  def tokens(str: String, sep: String): IndexedSeq[String] =
+    val tokenizer = StringTokenizer(str, sep)
+    IndexedSeq.fill(tokenizer.countTokens())(tokenizer.nextToken())
 end SeqUtil
