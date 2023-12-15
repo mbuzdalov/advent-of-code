@@ -25,17 +25,9 @@ object D19 extends Runner:
       val builder = IndexedSeq.newBuilder[String]
       var i = 0
       while i < str.length do
-        if str(i) == 'e' then
-          builder += "e"
-          i += 1
-        else if 'a' <= str(i) && str(i) <= 'z' then
-          assert(false)
-        else if i + 1 < str.length && 'a' <= str(i + 1) && str(i + 1) <= 'z' then
-          builder += str.substring(i, i + 2)
-          i += 2
-        else
-          builder += str.substring(i, i + 1)
-          i += 1
+        val size = if i + 1 < str.length && 'a' <= str(i + 1) && str(i + 1) <= 'z' then 2 else 1
+        builder += str.substring(i, i + size)
+        i += size
       builder.result()
 
     private val nonTerminals = replacements.map:
@@ -53,17 +45,24 @@ object D19 extends Runner:
       if from == until || rhs.isEmpty then
         if (from == until) == rhs.isEmpty then 0 else Inf
       else cache2.getOrElseUpdate((rhs, from, until), {
-        val raw = if init(from) == rhs.head then tryMatch(rhs.tail, from + 1, until) else Inf
-        val call = if from + 1 <= until - rhs.tail.size && nonTerminals.contains(rhs.head) then
-          (from + 1 to until - rhs.tail.size).map(end => compute(rhs.head, from, end) + tryMatch(rhs.tail, end, until)).min
-        else Inf
-        math.min(raw, call)
+        var result = Inf
+        val rh = rhs.head
+        val rt = rhs.tail
+        if init(from) == rh then
+          result = tryMatch(rt, from + 1, until)
+        if nonTerminals.contains(rh) then
+          var callEnd = from + 1
+          while callEnd <= until - rt.size do
+            val call = compute(rh, from, callEnd)
+            if call < result then
+              val tail = tryMatch(rt, callEnd, until)
+              result = math.min(result, tail + call)
+            callEnd += 1
+        result
       })
 
-    private def compute(lhs: String, from: Int, until: Int): Int =
-      if from == until then Inf
-      else if from + 1 == until && nonTerminals.contains(init(from)) then 1
-      else cache1.getOrElseUpdate((lhs, from, until), 1 + nonTerminals(lhs).map(rhs => tryMatch(rhs, from, until)).min)
+    private def compute(lhs: String, from: Int, until: Int): Int = if from == until then Inf else
+      cache1.getOrElseUpdate((lhs, from, until), 1 + nonTerminals(lhs).map(rhs => tryMatch(rhs, from, until)).min)
 
   override def part2(input: IndexedSeq[String]): String =
     val Seq(replacements, init) = SeqUtil.splitBySeparator(input, _.isEmpty)
