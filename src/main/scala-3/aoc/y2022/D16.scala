@@ -11,7 +11,7 @@ object D16 extends Runner:
       case s"Valve $name has flow rate=$flow; tunnel leads to valve $etc" =>
         Record(name, flow.toInt, IndexedSeq(etc))
       case s"Valve $name has flow rate=$flow; tunnels lead to valves $etc" =>
-        Record(name, flow.toInt, SeqUtil.tokenMap(etc, ", ", s => s))
+        Record(name, flow.toInt, SeqUtil.tokens(etc, ", "))
     val ii = records.indices
     val rename = records.map(_.name).zipWithIndex.toMap
     val distances = Array.fill(records.size, records.size)(1000000000)

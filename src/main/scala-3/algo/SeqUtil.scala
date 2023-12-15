@@ -38,7 +38,17 @@ object SeqUtil:
   def tokenMap[T](str: String, sep: String, map: String => T): IndexedSeq[T] =
     val tokenizer = StringTokenizer(str, sep)
     IndexedSeq.fill(tokenizer.countTokens())(map(tokenizer.nextToken()))
-  
+
+  /**
+   * Splits the given string `str` into tokens using separator chars given as `sep`,
+   * and returns the result in a sequence.
+   *
+   * Internally this uses `StringTokenizer` to tokenize the string, with its usual conventions applied. 
+   *
+   * @param str the string to tokenize.
+   * @param sep the separator chars.
+   * @return the sequence of tokens.
+   */
   def tokens(str: String, sep: String): IndexedSeq[String] =
     val tokenizer = StringTokenizer(str, sep)
     IndexedSeq.fill(tokenizer.countTokens())(tokenizer.nextToken())
