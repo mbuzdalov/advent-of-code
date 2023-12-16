@@ -33,9 +33,9 @@ object D16 extends Runner:
     val filler = Filler(input)
     val nRows = input.size
     val nCols = input(0).length
-    val td = Loops.mapMax(0, nCols)(c => filler.evaluate(0, c, 0))
-    val dt = Loops.mapMax(0, nCols)(c => filler.evaluate(nRows - 1, c, 2))
-    val lr = Loops.mapMax(0, nRows)(r => filler.evaluate(r, 0, 1))
-    val rl = Loops.mapMax(0, nRows)(r => filler.evaluate(r, nCols - 1, 3))
+    val td = Loops.mapFold[Int](0, nCols)(math.max)(c => filler.evaluate(0, c, 0))
+    val dt = Loops.mapFold[Int](0, nCols)(math.max)(c => filler.evaluate(nRows - 1, c, 2))
+    val lr = Loops.mapFold[Int](0, nRows)(math.max)(r => filler.evaluate(r, 0, 1))
+    val rl = Loops.mapFold[Int](0, nRows)(math.max)(r => filler.evaluate(r, nCols - 1, 3))
     Seq(td, dt, lr, rl).max.toString
 end D16
