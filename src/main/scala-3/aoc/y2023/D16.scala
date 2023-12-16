@@ -1,5 +1,6 @@
 package aoc.y2023
 
+import algo.Loops
 import aoc.Runner
 
 object D16 extends Runner:
@@ -19,26 +20,22 @@ object D16 extends Runner:
     private def go(row: Int, col: Int, dir: Int): Unit =
       if 0 <= row && row < nRows && 0 <= col && col < nCols && (visited(row)(col) & (1 << dir)) == 0 then
         visited(row)(col) |= 1 << dir
-        input(row)(col) match
-          case '.' =>
-            go(row + dRow(dir), col + dCol(dir), dir)
-          case '|' =>
-            go(row + dRow(0), col + dCol(0), 0)
-            go(row + dRow(2), col + dCol(2), 2)
-          case '-' =>
-            go(row + dRow(1), col + dCol(1), 1)
-            go(row + dRow(3), col + dCol(3), 3)
-          case '/' =>
-            go(row + dRow(3 - dir), col + dCol(3 - dir), 3 - dir)
-          case '\\' =>
-            go(row + dRow(dir ^ 1), col + dCol(dir ^ 1), dir ^ 1)
+        val nextDirs = input(row)(col) match
+          case '.' => 1 << dir
+          case '|' => 5
+          case '-' => 10
+          case '/' => 1 << (3 - dir)
+          case '\\' => 1 << (dir ^ 1)
+        Loops.forBits(nextDirs)(d => go(row + dRow(d), col + dCol(d), d))
 
   override def part1(input: IndexedSeq[String]): String = Filler(input).evaluate(0, 0, 1).toString
   override def part2(input: IndexedSeq[String]): String =
     val filler = Filler(input)
-    val td = input(0).indices.map(c => filler.evaluate(0, c, 0)).max
-    val dt = input(0).indices.map(c => filler.evaluate(input.size - 1, c, 2)).max
-    val lr = input.indices.map(r => filler.evaluate(r, 0, 1)).max
-    val rl = input.indices.map(r => filler.evaluate(r, input(0).length - 1, 3)).max
+    val nRows = input.size
+    val nCols = input(0).length
+    val td = Loops.mapMax(0, nCols)(c => filler.evaluate(0, c, 0))
+    val dt = Loops.mapMax(0, nCols)(c => filler.evaluate(nRows - 1, c, 2))
+    val lr = Loops.mapMax(0, nRows)(r => filler.evaluate(r, 0, 1))
+    val rl = Loops.mapMax(0, nRows)(r => filler.evaluate(r, nCols - 1, 3))
     Seq(td, dt, lr, rl).max.toString
 end D16
