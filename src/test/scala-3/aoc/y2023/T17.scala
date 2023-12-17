@@ -36,9 +36,9 @@ class T17 extends TestingUtil:
   it should "be correct for sample 2/2" in:
     D17.part2(input2) shouldEqual "71"
 
-  //  it should "solve part 1" in:
-//    D17.part1(mainInput) shouldEqual "1260"
-//
-//  it should "solve part 2" in:
-//    D17.part2(mainInput) shouldEqual ""
+  it should "solve part 1" in:
+    D17.part1(mainInput) shouldEqual "1260"
+
+  it should "solve part 2" in:
+    D17.part2(mainInput) shouldEqual "1416"
 end T17
