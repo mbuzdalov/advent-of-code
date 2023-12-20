@@ -98,12 +98,9 @@ object D20 extends Runner:
   override def part2(input: IndexedSeq[String]): String =
     val map = readMap(input)
     val queue = mutable.ArrayDeque[(String, String, Boolean)]()
-    var nPresses = 0
-
     val pd = map.values.map(m => new PeriodDetector(m.name))
 
-    while nPresses < 8192 do
-      nPresses += 1
+    Loops.foreach(0, 8192): nPresses =>
       queue.addOne(("button", "broadcaster", false))
       while queue.nonEmpty do
         val (source, curr, value) = queue.removeHead()
