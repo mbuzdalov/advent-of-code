@@ -1,7 +1,7 @@
 package aoc.y2023
 
 import scala.annotation.tailrec
-import scala.util.chaining._
+import scala.util.chaining.*
 
 import algo.SeqUtil
 import aoc.Runner
