@@ -23,9 +23,9 @@ object D22 extends Runner:
   private def parseBrick(line: String): Brick = line match
     case s"$x1,$y1,$z1~$x2,$y2,$z2" => Brick(Point(x1.toInt, y1.toInt, z1.toInt), Point(x2.toInt, y2.toInt, z2.toInt))
 
-  private def settle(bricks: Set[Brick]): (Set[Brick], Int) =
-    val sorted = bricks.toIndexedSeq.sortBy(_.min.z)
-    val result = Set.newBuilder[Brick]
+  private def settle(bricks: IndexedSeq[Brick]): (IndexedSeq[Brick], Int) =
+    val sorted = bricks.sortBy(_.min.z)
+    val result = IndexedSeq.newBuilder[Brick]
     val busy = mutable.HashSet[Point]()
     var moved = 0
     for p <- sorted do
@@ -42,11 +42,11 @@ object D22 extends Runner:
     (result.result(), moved)
 
   override def part1(input: IndexedSeq[String]): String =
-    val settled = settle(input.map(parseBrick).toSet)._1
-    settled.toIndexedSeq.count(e => settle(settled.removedAll(Set(e)))._2 == 0).toString
+    val settled = settle(input.map(parseBrick))._1
+    settled.count(e => settle(settled.filterNot(_ == e))._2 == 0).toString
 
   override def part2(input: IndexedSeq[String]): String =
-    val settled = settle(input.map(parseBrick).toSet)._1
-    settled.toIndexedSeq.map(e => settle(settled.removedAll(Set(e)))._2).sum.toString
+    val settled = settle(input.map(parseBrick))._1
+    settled.map(e => settle(settled.filterNot(_ == e))._2).sum.toString
 
 end D22
