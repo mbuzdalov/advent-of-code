@@ -7,6 +7,14 @@ object Loops:
       fun(i)
       i += 1
 
+  inline def any(from: Int, until: Int)(inline predicate: Int => Boolean): Boolean =
+    var result = false
+    var t = from
+    while !result && t < until do
+      result = predicate(t)
+      t += 1
+    result  
+  
   inline def forBits(mask: Int)(inline fun: Int => Any): Unit =
     var m = mask
     var c = 0
