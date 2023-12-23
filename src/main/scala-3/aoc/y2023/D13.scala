@@ -1,12 +1,12 @@
 package aoc.y2023
 
-import algo.SeqUtil
+import algo.{Loops, SeqUtil}
 import aoc.Runner
 
 object D13 extends Runner:
   private def vMismatches(input: IndexedSeq[String], axis: Int): Int =
-    val range = math.max(0, 2 * axis - input(0).length) until axis
-    input.map(line => range count (c => line(c) != line(2 * axis - 1 - c))).sum
+    val from = math.max(0, 2 * axis - input(0).length)
+    input.map(line => Loops.count(from, axis)(c => line(c) != line(2 * axis - 1 - c))).sum
 
   private def hMismatches(input: IndexedSeq[String], axis: Int): Int =
     val range = math.max(0, 2 * axis - input.size) until axis
