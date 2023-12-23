@@ -11,12 +11,8 @@ object D23 extends Runner:
   private val allowed1 = Map('.' -> Seq(0, 1, 2, 3), '>' -> Seq(1), 'v' -> Seq(0), '<' -> Seq(3), '^' -> Seq(2))
   private val allowed2 = ".>v<^".map(k => k -> Seq(0, 1, 2, 3)).toMap
 
-  private def isNode(input: IndexedSeq[String], row: Int, col: Int): Boolean = input(row)(col) != '#' && {
-    var count = 0
-    Loops.foreach(0, 4): d =>
-      if input(row + dRow(d))(col + dCol(d)) != '#' then count += 1
-    count > 2
-  }
+  private def isNode(input: IndexedSeq[String], row: Int, col: Int): Boolean = 
+    input(row)(col) != '#' && Loops.count(0, 4)(d => input(row + dRow(d))(col + dCol(d)) != '#') > 2
 
   private case class Edge(target: (Int, Int), distance: Int)
 

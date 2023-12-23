@@ -24,6 +24,14 @@ object Loops:
       c += 1
       m = mask >>> c
 
+  inline def count(from: Int, until: Int)(inline predicate: Int => Boolean): Int =
+    var result = 0
+    var t = from
+    while t < until do
+      if predicate(t) then result += 1
+      t += 1
+    result  
+  
   inline def mapFold[T](from: Int, until: Int)(inline fold: (T, T) => T)(inline fun: Int => T): T =
     if from == until then throw IllegalArgumentException("Empty interval") else
       var result = fun(from)
