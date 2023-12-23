@@ -1,7 +1,6 @@
 package aoc.y2023
 
 import scala.annotation.tailrec
-import scala.util.chaining.*
 
 import algo.SeqUtil
 import aoc.Runner
@@ -11,9 +10,9 @@ object D19 extends Runner:
     case s"{x=$x,m=$m,a=$a,s=$s}" => Map("x" -> x.toInt, "m" -> m.toInt, "a" -> a.toInt, "s" -> s.toInt)
 
   private def parseMap[T](input: IndexedSeq[String], parseRule: String => T) =
-    scala.collection.mutable.HashMap[String, IndexedSeq[T]]().tap: map =>
-      input.foreach:
-        case s"$name{$chain}" => map.put(name, SeqUtil.tokenMap(chain, ",", parseRule))
+    input.map:
+      case s"$name{$chain}" => (name, SeqUtil.tokenMap(chain, ",", parseRule))
+    .toMap
   
   private def parseRule1(line: String)(p: Map[String, Int]): Option[String] = line match
     case s"$k>$a:$t" => if p(k) > a.toInt then Some(t) else None
@@ -34,13 +33,13 @@ object D19 extends Runner:
     case t => (Some(p -> t), None)
 
   @tailrec
-  private def decide(map: scala.collection.mutable.HashMap[String, IndexedSeq[Map[String, Int] => Option[String]]],
+  private def decide(map: Map[String, IndexedSeq[Map[String, Int] => Option[String]]],
                      part: Map[String, Int], curr: String): Boolean = curr match
     case "A" => true
     case "R" => false
     case v => decide(map, part, map(v).flatMap(r => r(part)).head)
 
-  private def decide(map: scala.collection.mutable.HashMap[String, IndexedSeq[Map[String, Range] => (Option[(Map[String, Range], String)], Option[Map[String, Range]])]],
+  private def decide(map: Map[String, IndexedSeq[Map[String, Range] => (Option[(Map[String, Range], String)], Option[Map[String, Range]])]],
                      partRange: Map[String, Range], curr: String): Long =
     if curr == "A" then
       partRange.values.map(r => r.last - r.head + 1L).product
