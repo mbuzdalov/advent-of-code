@@ -7,6 +7,14 @@ object Loops:
       fun(i)
       i += 1
 
+  inline def findFirst[T](from: Int, until: Int)(inline fun: Int => Option[T]): Option[T] =
+    var i = from + 1
+    var result = fun(from)
+    while result.isEmpty && i < until do
+      result = fun(i)
+      i += 1
+    result
+  
   inline def any(from: Int, until: Int)(inline predicate: Int => Boolean): Boolean =
     var result = false
     var t = from
