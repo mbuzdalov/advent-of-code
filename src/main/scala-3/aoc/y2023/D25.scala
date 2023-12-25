@@ -4,10 +4,6 @@ import algo.{Loops, SeqUtil}
 import aoc.Runner
 
 object D25 extends Runner:
-  private class Resolver:
-    private val hash = scala.collection.mutable.HashMap[String, Int]()
-    def apply(str: String): Int = hash.getOrElseUpdate(str, hash.size)
-
   private class GraphBuilder:
     private val init, nextV, nextE = scala.collection.mutable.ArrayBuffer[Int]()
 
@@ -77,12 +73,12 @@ object D25 extends Runner:
         size
 
   override def part1(input: IndexedSeq[String]): String =
-    val resolver = new Resolver
+    val hash = scala.collection.mutable.HashMap[String, Int]()
     val graphB = new GraphBuilder
     input.foreach:
       case s"$src: $trg" =>
-        val srcV = resolver(src)
-        SeqUtil.tokens(trg, " ").foreach(str => graphB.addEdge(srcV, resolver(str)))
+        val srcV = hash.getOrElseUpdate(src, hash.size)
+        SeqUtil.tokens(trg, " ").foreach(str => graphB.addEdge(srcV, hash.getOrElseUpdate(str, hash.size)))
     val graph = graphB.result()
     val nVertices = graph.nVertices
     val nEdges = graph.nEdges
