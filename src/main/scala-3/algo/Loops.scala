@@ -1,6 +1,12 @@
 package algo
 
 object Loops:
+  inline def repeat(times: Int)(inline fun: => Any): Unit =
+    var i = 0
+    while i < times do
+      fun
+      i += 1
+  
   inline def foreach(from: Int, until: Int)(inline fun: Int => Any): Unit =
     var i = from
     while i < until do
