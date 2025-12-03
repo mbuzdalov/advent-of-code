@@ -10,4 +10,10 @@ class T02 extends TestingUtil:
 
   it should "be correct for sample 2" in:
     D02.part2(input) shouldEqual "4174379265"
+  
+  it should "solve main input 1" in:
+    D02.part1(mainInput) shouldEqual "24043483400"
+  
+  it should "solve main input 2" in:
+    D02.part2(mainInput) shouldEqual "38262920235"
     
