@@ -19,12 +19,12 @@ object TestReader:
     readUntilNull(br, builder += _)
     builder.result()
 
-  def read(clazz: Class[_], suffix: String = ""): IndexedSeq[String] =
+  def read(clazz: Class[_], name: String): IndexedSeq[String] =
     val tokens = StringTokenizer(clazz.getName, ".$")
     assert(tokens.nextToken() == "aoc")
     val year, day = tokens.nextToken()
     assert(year(0) == 'y')
-    val file = File(s"inputs/${year.substring(1)}/$day$suffix.in".replace('T', 'D'))
+    val file = File(s"inputs/${year.tail}/${day.tail}/$name")
     if file.exists() then
       Using.resource(BufferedReader(FileReader(file)))(readFromFile)
     else

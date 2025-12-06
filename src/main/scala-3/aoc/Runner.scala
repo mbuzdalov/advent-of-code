@@ -5,7 +5,7 @@ abstract class Runner:
   def part2(input: IndexedSeq[String]): String
 
   def main(args: Array[String]): Unit =
-    val input = TestReader.read(getClass)
+    val input = TestReader.read(getClass, "input.txt")
 
     try println(part1(input)) catch
       case _: NotImplementedError =>

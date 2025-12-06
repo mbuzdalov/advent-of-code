@@ -5,6 +5,6 @@ import org.scalatest.matchers.should.Matchers
 
 trait TestingUtil extends AnyFlatSpec with Matchers:
   extension (input: String) def toLines: IndexedSeq[String] = input.stripMargin.split('\n').toIndexedSeq
-  protected lazy val mainInput: IndexedSeq[String] = TestReader.read(getClass)
-  protected lazy val testInput: IndexedSeq[String] = TestReader.read(getClass, "s")
+  protected lazy val mainInput: IndexedSeq[String] = TestReader.read(getClass, "input.txt")
+  protected lazy val testInput: IndexedSeq[String] = TestReader.read(getClass, "sample.txt")
 end TestingUtil
