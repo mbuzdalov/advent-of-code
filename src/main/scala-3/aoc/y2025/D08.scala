@@ -26,18 +26,19 @@ object D08 extends Runner:
       j <- 0 until i
     yield (i, j)
 
-    val sorted = edges.sortBy:
+    val (firstSet, lastSet) = edges.sortBy:
       case (a, b) => points(a).dist2(points(b))
+    .splitAt(m)
 
     val ds = DisjointSet(n)
-    for (a, b) <- sorted.take(m) do ds.unite(a, b)
+    for (a, b) <- firstSet do ds.unite(a, b)
 
     val cnt = Array.fill(n)(0L)
     foreach(0, n)(i => cnt(ds.get(i)) += 1)
     val a1 = cnt.sorted.takeRight(3).product
 
     var a2 = -1L
-    for (a, b) <- sorted.drop(m) do
+    for (a, b) <- lastSet do
       if ds.get(a) != ds.get(b) then
         ds.unite(a, b)
         if ds.nComponents == 1 then
