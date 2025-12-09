@@ -27,8 +27,16 @@ object Loops:
     while !result && t < until do
       result = predicate(t)
       t += 1
-    result  
-  
+    result
+
+  inline def all(from: Int, until: Int)(inline predicate: Int => Boolean): Boolean =
+    var result = true
+    var t = from
+    while result && t < until do
+      result = predicate(t)
+      t += 1
+    result
+
   inline def forBits(mask: Int)(inline fun: Int => Any): Unit =
     var m = mask
     var c = 0
