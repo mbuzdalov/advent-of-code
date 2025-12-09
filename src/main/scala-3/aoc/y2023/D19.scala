@@ -13,7 +13,7 @@ object D19 extends Runner:
     input.map:
       case s"$name{$chain}" => (name, SeqUtil.tokenMap(chain, ",", parseRule))
     .toMap
-  
+
   private def parseRule1(line: String)(p: Map[String, Int]): Option[String] = line match
     case s"$k>$a:$t" => if p(k) > a.toInt then Some(t) else None
     case s"$k<$a:$t" => if p(k) < a.toInt then Some(t) else None
