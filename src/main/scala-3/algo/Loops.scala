@@ -39,12 +39,9 @@ object Loops:
 
   inline def forBits(mask: Int)(inline fun: Int => Any): Unit =
     var m = mask
-    var c = 0
     while m != 0 do
-      c += Integer.numberOfTrailingZeros(m)
-      fun(c)
-      c += 1
-      m = mask >>> c
+      fun(Integer.numberOfTrailingZeros(m))
+      m &= m - 1
 
   inline def count(from: Int, until: Int)(inline predicate: Int => Boolean): Int =
     var result = 0
